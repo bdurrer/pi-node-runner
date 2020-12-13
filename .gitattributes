@@ -1,0 +1,11 @@
+*	            text=auto
+*.jsx           text eol=lf
+*.js            text eol=lf
+*.json          text eol=lf
+*.cs            text eol=lf
+*.csproj        text eol=lf
+*.projitems     text eol=lf
+
+# keep CRLF in windows stuff
+*.bat           text eol=crlf
+*.sln           text eol=crlf

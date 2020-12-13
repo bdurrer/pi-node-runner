@@ -1,2 +1,2 @@
 # pi-node-runner
-GitHub Check Runner tor performance tests on RaspberryPi
+GitHub Check runner for performance testing on RaspberryPi

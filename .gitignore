@@ -1,3 +1,10 @@
+# Editors
+*.iml
+.idea
+
+# private keys
+*.pem
+
 # Logs
 logs
 *.log
