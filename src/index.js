@@ -13,8 +13,8 @@ const config = {
     github: {
         eventSecret: process.env.GH_SECRET,
         clientSecret: process.env.GH_CLIENT_SECRET,
-        clientId: process.env.CLIENT_ID,
-        appId: process.env.APP_ID,
+        clientId: process.env.GH_CLIENT_ID,
+        appId: process.env.GH_APP_ID,
         clientKeyFile: projectPath(process.env.GH_KEY_FILE),
     },
     server: {

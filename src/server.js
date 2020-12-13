@@ -8,7 +8,7 @@ const githubRequest = require('./github-request');
 const runTest = require('./test-runner');
 
 async function performCheck(githubConfig, repo, installationId, sha) {
-    log.info('Running check on', repo);
+    log.info('Running check on', repo, sha);
 
     const { ok, failedTests } = await runTest(repo, sha);
 
@@ -22,6 +22,8 @@ async function performCheck(githubConfig, repo, installationId, sha) {
             summary: ok ? 'Performance did not significantly change' : `${failedTests} tests had a drop in performance. Check the details`,
         }
     });
+
+    log.info('Finished check on ', repo, 'with', ok ? 'success' : 'failure');
 }
 
 function server(config) {
@@ -45,11 +47,12 @@ function server(config) {
             return;
         }
 
-        const checkSuite = req.body.check_suite;
+        const data = req.body;
+        const checkSuite = data.check_suite;
         if (checkSuite /*&& checkSuite.pull_requests && checkSuite.pull_requests.length*/) {
-            const installationId = req.body.installation.id;
-            const repo = req.body.repository.full_name;
-            const sha = req.body.after;
+            const installationId = data.installation.id;
+            const repo = data.repository.full_name;
+            const sha = checkSuite.after;
             performCheck(config.github, repo, installationId, sha);
         }
 

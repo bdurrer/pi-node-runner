@@ -1,5 +1,5 @@
-const axios = require('axios');
 const createJWT = require('./auth');
+const { request } = require("@octokit/request");
 
 /**
  * Performs a request against the GitHub API.
@@ -21,17 +21,15 @@ async function githubRequest(githubConfig, path, installationId, method, data) {
         method = method.toUpperCase();
     }
 
-    const res = await axios({
+    const result = await request({
         method,
-        url: `https://api.github.com${path}`,
+        url: path,
         data,
         headers: {
             authorization: `bearer ${token}`,
-            accept: 'application/json'
-        }
+        },
     });
-
-    return res.data;
+    return result.data;
 }
 
 module.exports = githubRequest;
